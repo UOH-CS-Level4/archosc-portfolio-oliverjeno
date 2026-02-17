@@ -3,22 +3,23 @@ on:
  push: 
   branches: 
     [main] 
-
+    
+permissions: 
+ contents : read 
+ pages : write 
+ id-token: write
+ 
 jobs: 
  projectdeploy: 
   runs-on: ubuntu-latest
   
   steps: 
- - name: Checkout Repository 
- uses: actions/checkout@v4 
- 
- permissions: 
- contents : read 
- pages : write 
- id-token: write
-  name: Upload Artifact  
- uses: actions/upload-pages-artifact@v3  
- with:  
-  path: 
   - name: Checkout Repository 
-  uses: actions/deploy-pages@v4 .
+    uses: actions/checkout@v4 
+  - name: Upload Artifact  
+    uses: actions/upload-pages-artifact@v3  
+    with:  
+     path: .
+  - name: Checkout Repository 
+    uses: actions/deploy-pages@v4
+
