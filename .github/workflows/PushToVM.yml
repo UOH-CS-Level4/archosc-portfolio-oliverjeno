@@ -1,0 +1,20 @@
+name: push To windows VM
+#Name of the workflow 
+on:
+ push:
+  branches: [main] 
+
+jobs:
+  deploy: 
+    runs-on: self-hosted 
+    #deploys on the self hosted uni vm 
+    steps: 
+     - uses: actions/checkout@v4 
+     - name: Deploy to IIS folder
+       shell: Powershell 
+       #uses powershell on the local machine 
+       run: | 
+        $src "$(env:GITGUB_WORKSPACE)\* #Sets the source to be the current Github Repository.
+        copy-item -path $src -Destination $dst -Recurse -force ~copies repositry across into IIS folder.
+    
+      
