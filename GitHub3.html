@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Lab 3</title>
+
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        img {
+            width: 700px;
+            max-width: 100%;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="script.js"></script>
+
+    <h1>GitHub Lab 3</h1>
+
+    <<h2>Part 1</h2>
+
+<p>
+    I used my skill I learnt from my prior lab to pull pulled my work from GitHub into the original folder I made for my assignment
+     and copied and pasted that into my new work folder as a new GitHub classroom repository was made for the coursework.
+</p>
+
+<img src="Pictures/Picture12.png">
+<img src="Pictures/Picture13.png">
+
+
+<h2>Part 2</h2>
+
+<p>
+    I first went to my pages section in GitHub and unpublished the site I then pressed the dropdown button under source and chose GitHub 
+    actions. I then went to the actions section on the main page and created a new work flow. I then chose to write my own pipeline. 
+    Finally I changed the name from “main.yml” to “deployment.yml”.
+</p>
+
+<img src="Pictures/Picture14.png">
+
+
+<h2>Part 3</h2>
+
+<p>
+    With help from document I then wrote some YAML. Firstly I set the set the name to be “Deploy Website” the name itself can be anything 
+    however its important that its clear. With the second part telling GitHub action to run every time I push to the main branch. 
+    To spin up the VM in future labs I then added a jobs commands, with the “projectdeploy” naming the list of jobs to do.
+    With the runs on command telling us the specific type of virtual machine we will be running on. Since we will be working on a virtual
+    machine with only operating system installed we will need to add GitHub action called “checkout” so the machine can be worked on. 
+    Then permission need to be a added that allows the pipeline to read and write my repository.
+     The artifact section commits it to memory allowing so it can be used throughout the workflow. 
+    Finally deploy to GitHub pages is used to it can be deployed.
+</p>
+
+
+<img src="Pictures/Picture15.png">
+
+<h2>How I Linked My Pages</h2>
+
+
+
+<p>
+I linked my website pages together using hyperlinks. I created links from the homepage to my Lab 2 and Lab 3 pages and  added links
+ between Lab 2 and Lab 3 as well as links back to the homepage. This makes it easy for people to navigate between 
+ all of the pages i will use.
+</p>
+
+</body>
+</html>
