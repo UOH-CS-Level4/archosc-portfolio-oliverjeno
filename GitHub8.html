@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Lab 8</title>
+
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        img {
+            width: 700px;
+            max-width: 100%;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="script.js"></script>
+
+    <h1>GitHub Lab 8</h1>
+
+    
+<h2>Part 1</h2> 
+<h2>TASK 1 - Virtual Memory and Paging</h2>
+
+<p><strong>Task 1 (i)</strong></p>
+
+<p>
+Given the following:
+</p>
+
+<p>
+Virtual Address:
+<br>
+4-bit VPN | 8-bit Offset
+</p>
+
+<p>
+Physical Address:
+<br>
+3-bit PPN | 8-bit Offset
+</p>
+
+<p>
+Determine the number of virtual pages and the number of bytes per page.
+</p>
+
+<p>
+Working:
+<br>
+VPN = 4 bits
+<br><br>
+
+Number of virtual pages = 2<sup>4</sup>
+<br>
+= 16 virtual pages
+<br><br>
+
+Offset = 8 bits
+<br><br>
+
+Page size = 2<sup>8</sup>
+<br>
+= 256 bytes
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+Number of virtual pages = 16
+<br>
+Bytes per page = 256 bytes
+</p>
+
+<p>
+Task 1 Question 1: A VPN has two possible values, 0 and 1, so I did 2<sup>4</sup> to get the number of virtual pages. I then did essentially the same thing with the offset to calculate the number of bytes per page.
+</p>
+
+
+
+<hr>
+
+<p><strong>Task 1 (ii)</strong></p>
+
+<p>
+The following figure shows the 16 virtual pages and the 8 physical pages.
+</p>
+
+<p>
+Each row of the page map contains 5 bits (1 bit each for the Dirty and Resident bits, and a 3-bit Physical Page Number).
+</p>
+
+<p>
+A load instruction generates the virtual address <strong>0x2C8</strong>. Determine the VPN, the offset and the corresponding PPN.
+</p>
+
+<p>
+Working:
+<br>
+Virtual Address = 0x2C8
+<br><br>
+
+4-bit VPN | 8-bit Offset
+<br><br>
+
+VPN = 0x2
+<br>
+Offset = 0xC8
+<br><br>
+
+VPN 0x2 = PPN 0x4
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+VPN = 0x2
+<br>
+Offset = 0xC8
+<br>
+Corresponding PPN = 0x4
+</p>
+
+<p>
+Task 1 Question 2: I split the virtual address 0x2C8 into two parts, giving me a VPN of 0x2 and an offset of 0xC8. I then looked at the page map and found the row for VPN 0x2, which directly mapped to PPN 0x4. Therefore, the virtual address 0x2C8 maps to PPN 0x4, with an offset of 0xC8.
+</p>
+
+<h2>Part 2 - Page Frames</h2>
+
+<p><strong>Task 2</strong></p>
+
+<p>
+The bottom 32 KB of the main memory is divided into eight page frames of 4 KB each.
+In the table, the first column represents the page frame and the second column
+shows the range of physical addresses.
+</p>
+
+<p>
+Determine the values of A, B, C and D.
+</p>
+
+<p>
+Working:
+<br>
+1 KB = 1024 bytes
+<br><br>
+
+4 KB = 4 × 1024
+<br>
+= 4096 bytes
+</p>
+
+<p>
+To calculate the final address in each page frame, I used:
+</p>
+
+<p>
+End address = Starting address + 4096 - 1
+</p>
+
+<p>
+A = 28672 + 4096 - 1
+<br>
+A = 32767
+<br><br>
+
+B = 20480 + 4096 - 1
+<br>
+B = 24575
+<br><br>
+
+C = 12288 + 4096 - 1
+<br>
+C = 16383
+<br><br>
+
+D = 0 + 4096 - 1
+<br>
+D = 4095
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+A = 32767
+<br>
+B = 24575
+<br>
+C = 16383
+<br>
+D = 4095
+</p>
+
+<p>
+Task 2: I first converted 4 KB into bytes and used the starting address plus
+4096 minus 1 for each page frame to calculate the final address. I used minus
+1 because the starting address is already counted as the first byte in the page
+frame.
+</p>
+
+<h2>Part 3</h2>
+
+<p><strong>Task 3</strong></p>
+
+<p>
+The table below shows the first eight entries of a page table and a 32-bit
+virtual address. The first 20 bits represent the virtual page number and the
+remaining 12 bits represent the offset.
+</p>
+
+<p>
+<strong>2.a What is the virtual page that is referenced?</strong>
+</p>
+
+<p>
+Working:
+<br>
+The first 20 bits of the virtual address are all 0.
+<br>
+Virtual Page = 0
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+Virtual Page = 0
+</p>
+
+<p>
+Task 3 Question 2.a: I looked at the first 20 bits of the virtual address because these bits represent the virtual page number. Since all 20 bits were 0, the referenced virtual page is 0.
+</p>
+
+<p>
+<strong>2.b What is the page frame value (in both binary and denary)?</strong>
+</p>
+
+<p>
+Working:
+<br>
+Virtual Page 0 → Page Frame = 111
+<br>
+111₂ = 7₁₀
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+Binary = 111
+<br>
+Denary = 7
+</p>
+
+<p>
+Task 3 Question 2.b: I used the virtual page number from part 2.a and looked at row 0 in the page table. The page frame value was 111 in binary. I converted this to denary by adding 4 + 2 + 1, giving 7.
+</p>
+
+<p>
+<strong>2.c Construct the physical address with the information given.</strong>
+</p>
+
+<p>
+Working:
+<br>
+Present/Absent bit = 0
+<br>
+0 means the page is not stored in RAM.
+<br>
+Therefore, a page fault occurs.
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+Page Fault
+</p>
+
+<p>
+Task 3 Question 2.c: I looked at the Present/Absent bit in the page table. Since the value was 0, the page was not stored in RAM. Because the page was not present in physical memory, a page fault occurred.
+</p>
+
+<h2>Part 4</h2>
+
+<p><strong>Task 4.1</strong></p>
+
+<p>
+A computer has a virtual memory size of 2<sup>32</sup> bytes and a physical
+memory size of 2<sup>24</sup> bytes. The page size is 2<sup>10</sup> bytes.
+Calculate:
+</p>
+
+<p>
+(i) The number of page frames in physical memory.
+<br>
+(ii) The number of entries in the page table.
+<br>
+(iii) The number of bits required for each page table entry (excluding dirty and reference bits).
+<br>
+(iv) The total size of the page table.
+</p>
+
+<p>
+Working:
+</p>
+
+<p>
+(i)
+<br>
+Number of page frames = 2<sup>24</sup> ÷ 2<sup>10</sup>
+<br>
+= 2<sup>14</sup>
+<br>
+= 16,384 page frames
+</p>
+
+<p>
+(ii)
+<br>
+Number of virtual pages = 2<sup>32</sup> ÷ 2<sup>10</sup>
+<br>
+= 2<sup>22</sup>
+<br>
+= 4,194,304 entries
+</p>
+
+<p>
+(iii)
+<br>
+Physical Page Number bits = 24 − 10
+<br>
+= 14 bits
+<br><br>
+
+Present/Absent bit = 1
+<br><br>
+
+Total = 14 + 1
+<br>
+= 15 bits
+</p>
+
+<p>
+(iv)
+<br>
+Page table size = 4,194,304 × 15
+<br>
+= 62,914,560 bits
+<br><br>
+
+62,914,560 ÷ 8
+<br>
+= 7,864,320 bytes
+<br><br>
+
+7,864,320 ÷ 1024
+<br>
+= 7,680 KB
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+(i) 16,384 page frames
+<br>
+(ii) 4,194,304 page table entries
+<br>
+(iii) 15 bits per entry
+<br>
+(iv) 7,680 KB
+</p>
+
+<p>
+<strong>  Translation Lookaside Buffer (TLB) Simulation  </strong>
+</p>
+
+<p> 
+    
+1.	Simulate TLB hits and misses. 
+</p>
+  
+2.	Track the hit ratio after a sequence of address translations
+</p>
+<img src="Pictures/Picture29.png">
+<img src="Pictures/Picture30.png">
+<h2>Part 5</h2>
+
+<p><strong>Task 5.1</strong></p>
+
+<p>
+Draw a block diagram to show how a decoder can be used to select one of 16
+memory locations.
+</p>
+
+<p>
+Working:
+</p>
+
+
+
+<p>
+The 4-bit address is sent into the decoder. The decoder then activates one of
+16 select lines, with each select line connected to a different memory
+location.
+</p>
+
+<p>
+<strong>Answer:</strong>
+
+
+<img src="Pictures/Picture31.png" >
+
+
+
+
+
+<h3>Task 5.2</h3>
+
+<p>
+If we add the control bits as part of the memory address, then the memory
+address not only has the actual address of the memory but also contains the
+control bits. For example, if we have the pattern below with a 2 to 4 decoder:
+</p>
+
+<p>
+Write Read Enable Decoder
+</p>
+
+<p>
+Then we will have a 5-bit address to locate the 4 positions of the memory.
+Therefore, an address value of <strong>10101</strong> (this is
+<strong>0x15</strong> in hexadecimal) will trigger a write action to the memory
+location with index 1.
+</p>
+
+<p>
+Use similar combined address patterns and work out the address value for the
+following:
+</p>
+
+<h4>a. Read memory location with content FEAD</h4>
+
+<p>
+Working:
+<br>
+A = 1010
+<br>
+Write = 0
+<br>
+Read = 1
+<br>
+Enable = 1
+<br><br>
+
+Index A = 1010
+<br>
+Write = 0
+<br>
+Read = 1
+<br>
+Enable = 1
+<br><br>
+
+Combined address = 0111010
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+0111010
+</p>
+
+<h4>b. Write to memory location with its index value as C</h4>
+
+<p>
+Working:
+<br>
+C = 1100
+<br>
+Write = 1
+<br>
+Read = 0
+<br>
+Enable = 1
+<br><br>
+
+Combined address = 1011100
+</p>
+
+<p>
+<strong>Answer:</strong>
+<br>
+1011100
+</p>
+
+
+
+<p>
+    <a href="GitHub9.html">Go to Lab 4</a>
+</p>
+
+<p>
+    <a href="index.htm">Back to Home</a>
+</p>
+
+</body>
+</html>
