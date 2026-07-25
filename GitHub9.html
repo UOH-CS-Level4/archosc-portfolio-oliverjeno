@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Lab 9</title>
+
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        img {
+            width: 700px;
+            max-width: 100%;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="script.js"></script>
+
+    <h1>GitHub Lab 9</h1>
+
+    
+<h2>Part 1</h2> 
+<h2>TASK 1 - manual analysis with Banker’s Algorithm</h2>
+
+<img src="Pictures/Picture32.png" >
+
+
+
+<p>   
+I compared each process’s Need with the available resources. If the process could run,
+ I added its resources back to Work and repeated the steps until all processes were completed. </p>
+
+ <h2>Part 2</h2> 
+<h2>TASK 2 - increasing resource allocation </h2>
+
+
+<img src="Pictures/Picture33.png">
+
+
+<p> I did the same steps again but with more resources. The result was still safe and the sequence stayed the same. Having more resources makes it easier for processes to run and lowers the chance of deadlock.</p>
+
+<h2>Part 3</h2> 
+<h2>TASK 3 - Further increasing resource allocation </h2>
+<img src="Pictures/Picture34.png">
+<img src="Pictures/Picture35.png">
+<p> More resources was added but the system was already in a safe state so the sequence stayed the same. The extra resources just make it easier for processes to run and finish without waiting.</p>
+
+<h2>Part 4</h2> 
+<h2>TASK 4 - Output whether the system is a safe state or not, and the order of executionn </h2>
+
+<img src="Pictures/Picture36.png">
+<img src="Pictures/Picture37.png">
+<img src="Pictures/Picture38.png">
+
+<p>
+The program first asks the user to input the number of processes and resource types using
+Console.Write("Number of processes: "); and
+Console.Write("Number of resource types: ");
+</p>
+
+<p>
+Then I created arrays to store allocation, maximum demand, need, available resources,
+finished processes and the safe sequence. I did this with
+Console.WriteLine("Enter allocation matrix..."); and
+Console.WriteLine("Enter maximum demand matrix...");
+</p>
+
+<p>
+The maximum demand matrix is then entered using
+Console.WriteLine("Enter maximum demand matrix...");
+and my program calculates this by using
+need[i, j] = max[i, j] - allocation[i, j];
+All this is stored within the array.
+</p>
+
+<p>
+A loop is then used while (count &lt; processes).
+Inside this loop, each process is checked to see if it can run by comparing
+if (need[i, j] &gt; available[j]).
+If the need is less than or equal to the available resources, the process is allowed to run.
+The program then adds its allocated resources back to the available resources using
+available[j] += allocation[i, j];
+</p>
+
+<p>
+If no process can run in a full loop, the program outputs
+"System is not in a safe state."
+If it is safe,
+Console.Write("Safe Sequence: ");
+is written along with
+"System is in a safe state."
+</p>
+
+<p>
+    <a href="index.htm">Back to Home</a>
+</p>
+
+</body>
+</html>
